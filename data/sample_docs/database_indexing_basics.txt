@@ -1,0 +1,23 @@
+An index in a relational database is a data structure that allows the
+database engine to look up rows without scanning the entire table. The most
+common type is the B-tree index, which works well for equality checks and
+range queries on ordered data such as integers, dates, or text.
+
+For text search, PostgreSQL offers a specialized data type called tsvector,
+which represents a document as a sorted list of lexemes (normalized words)
+ready for searching. Paired with a GIN (Generalized Inverted Index), full
+text search queries can find rows containing specific words very quickly,
+even across millions of rows, without a sequential scan.
+
+Choosing the right index is a tradeoff. Indexes speed up SELECT queries but
+slow down INSERT and UPDATE operations, since the index itself has to be
+maintained. A table with too many indexes, or indexes on columns that are
+rarely filtered, wastes storage and hurts write performance for no real
+benefit. A common piece of practical advice for database administrators is
+to periodically review pg_stat_user_indexes to find indexes that are barely
+used and are safe candidates for removal.
+
+Query performance can be diagnosed with EXPLAIN ANALYZE, which shows the
+actual execution plan Postgres chose, including whether it used an index
+scan, a sequential scan, or a bitmap heap scan, along with the real time
+spent in each step.

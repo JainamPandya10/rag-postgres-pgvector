@@ -1,0 +1,23 @@
+pgvector is an open-source extension for PostgreSQL that adds support for
+storing and querying vector embeddings directly inside a relational database.
+It introduces a new column type called VECTOR, along with distance operators
+for L2 distance, cosine distance, and inner product.
+
+Two indexing strategies are commonly used with pgvector: HNSW (Hierarchical
+Navigable Small World) and IVFFlat (Inverted File with Flat compression).
+HNSW generally gives better query performance and recall at the cost of
+slower index build time, while IVFFlat builds faster but requires the table
+to have a reasonable number of rows before the index becomes effective,
+since it relies on clustering the data into lists.
+
+Because pgvector runs inside Postgres, developers can combine vector
+similarity search with ordinary relational filtering in a single SQL query.
+For example, a query can retrieve the nearest neighbors of an embedding
+while also filtering by a foreign key, a date range, or a full-text search
+condition -- something that is much harder to do cleanly when embeddings
+live in a separate specialized vector database with no relational features.
+
+This makes pgvector particularly attractive for teams that already run
+Postgres in production and want to add semantic search or retrieval
+augmented generation (RAG) capabilities without introducing an entirely
+new piece of infrastructure to operate and secure.
