@@ -55,7 +55,7 @@ deliberately keeps everything in Postgres to show:
                      ┌─────────────────────────┐
                      │  generate.py             │
                      │  build cited prompt →   │
-                     │  Claude API              │
+                     │  Groq API              │
                      └───────────┬─────────────┘
                                  ▼
                               answer
