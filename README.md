@@ -157,12 +157,3 @@ in an interview):
   queries to see how retrieval quality changes — remember to update
   `VECTOR(384)` in the schema to match the new dimension.
 
-## What this demonstrates (for your CV / interview prep)
-
-- Relational schema design with foreign keys, generated columns, arrays
-- Two Postgres index types and when to use each (`HNSW`, `GIN`)
-- Writing and reading `EXPLAIN ANALYZE` output to reason about query plans
-- Hybrid search design (a real, current pattern in production RAG systems)
-- Parameterized SQL (no string-formatted queries — injection-safe)
-- Clean separation of ingestion, retrieval, and generation as independent,
-  testable stages
